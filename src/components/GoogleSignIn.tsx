@@ -2,6 +2,18 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabaseClient';
 
+const buttonStyle = {
+  backgroundColor: 'var(--white-color)',
+  color: 'var(--black-color)',
+  padding: '1rem 2rem',
+  borderRadius: '4px',
+  boxShadow: '0 0 30px rgba(0,0,0,0.6)',
+  maxWidth: '300px',
+  border: 'none',
+  cursor: 'pointer',
+}
+
+
 export default function GoogleSignIn() {
   const [user, setUser] = useState(null);
 
@@ -37,14 +49,19 @@ export default function GoogleSignIn() {
   return (
     <div>
       {user ? (
-        <div>
-          <p>Welcome, {user.email}!</p>
-          <button onClick={handleSignOut} style={{ padding: '10px 20px', fontSize: '16px' }}>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '1rem',
+        }}>
+          <p>Welcome, {user.user_metadata.name}!</p>
+          <button style={buttonStyle} onClick={handleSignOut}>
             Sign Out
           </button>
         </div>
       ) : (
-        <button onClick={handleSignIn} style={{ padding: '10px 20px', fontSize: '16px' }}>
+        <button style={buttonStyle} onClick={handleSignIn}>
           Sign in with Google
         </button>
       )}

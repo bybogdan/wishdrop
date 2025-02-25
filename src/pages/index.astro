@@ -1,5 +1,8 @@
 ---
 import GoogleSignIn from "../components/GoogleSignIn";
+import Footer from "../components/Footer";
+import Item from "../components/Item";
+import Container from "../components/Container";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
@@ -7,10 +10,16 @@ import GoogleSignIn from "../components/GoogleSignIn";
 
 <html>
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Google Auth with Supabase</title>
   </head>
   <body>
-    <h1>Welcome to My Astro App</h1>
-    <GoogleSignIn client:load />
+    <Container>
+      <h1>Wishdrop</h1>
+      <GoogleSignIn client:load />
+      <!-- <Item>Birthday Gifts</Item> -->
+    </Container>
+    <Footer />
   </body>
 </html>
