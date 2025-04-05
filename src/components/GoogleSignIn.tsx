@@ -19,7 +19,6 @@ export default function GoogleSignIn() {
 
   useEffect(() => {
     const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
-      console.log('session', session)
       setUser(session?.user ?? null);
     });
 
@@ -46,22 +45,44 @@ export default function GoogleSignIn() {
     }
   };
 
+  console.log('user object:', user)
+
   return (
     <div>
       {user ? (
         <div style={{
           display: 'flex',
-          flexDirection: 'column',
+          flexDirection: 'row',
           alignItems: 'center',
           gap: '1rem',
+
         }}>
-          <p>Welcome, {user.user_metadata.name}!</p>
-          <button style={buttonStyle} onClick={handleSignOut}>
-            Sign Out
+          <p>{user.user_metadata.full_name}</p>
+          <img style={{
+            borderRadius: '50%',
+            width: '50px',
+            height: '50px',
+          }} src={user.user_metadata.picture}/>
+          <button style={{
+            backgroundColor: 'transparent',
+            color: 'white',
+            border: 'none',
+            outline: 'none',
+            cursor: 'alias'
+
+          }} onClick={handleSignOut}>
+            Exit
           </button>
         </div>
       ) : (
-        <button style={buttonStyle} onClick={handleSignIn}>
+        <button style={{
+          backgroundColor: 'transparent',
+          color: 'white',
+          border: 'none',
+          outline: 'none',
+          cursor: 'alias'
+
+        }} onClick={handleSignIn}>
           Sign in with Google
         </button>
       )}
